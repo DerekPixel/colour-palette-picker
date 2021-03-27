@@ -54,3 +54,14 @@ box-sizing: border-box;
 .app  {
   height: 100vh;
 }
+
+.colours {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 400px;
+  gap: calc(1em / 3);
+}
+
+.colour-column {
+  height: 100%;
+}
