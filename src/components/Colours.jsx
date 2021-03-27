@@ -13,8 +13,9 @@ const Colours = ({colour, setColour}) => {
   var colourDiv = colour.map((colourObj, i) => {
     return (
     <div
+      className='colour-column'
       style={{backgroundColor: `${colourObj.colour}`}}
-      key={colourObj.pos + colourObj.colour}
+      key={colourObj.pos}
     >
       {colourObj.pos}
       <input type="color" value={colourObj.colour} onChange={(e) => {handleChangeColour(e, colourObj.pos)}} />
@@ -23,7 +24,7 @@ const Colours = ({colour, setColour}) => {
   })
 
   return (
-    <div>
+    <div className='colours'>
       {colourDiv}
     </div>
   )
