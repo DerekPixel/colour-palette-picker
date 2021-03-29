@@ -57,11 +57,18 @@ box-sizing: border-box;
 
 .colours {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-template-rows: 400px;
-  gap: calc(1em / 3);
 }
 
 .colour-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100%;
+}
+
+.colour-column-item {
+  margin: 10px 0;
 }
