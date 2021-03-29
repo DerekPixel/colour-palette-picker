@@ -4,25 +4,33 @@ import Colours from './components/Colours';
 
 function App() {
 
-  const [coloursObject, setColour] = useState([]);
+
+  const [coloursArray, setColourArray] = useState([]);
 
   function addColourNewToColoursObject() {
-    var coloursObjectCopy = coloursObject.slice();
+    var coloursArrayCopy = coloursArray.slice();
 
     var newColour = {
-      colour: '#000000',
-      pos: coloursObjectCopy.length
+      colour: `#${rH()}${rH()}${rH()}${rH()}${rH()}${rH()}`,
+      pos: coloursArrayCopy.length
     };
 
-    coloursObjectCopy.push(newColour);
+    coloursArrayCopy.push(newColour);
 
-    setColour(coloursObjectCopy);
+    setColourArray(coloursArrayCopy);
 
+  }
+
+  const rH = () => {
+    //random Hex value
+    const colourHex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    var num = Math.floor(Math.random() * colourHex.length);
+    return colourHex[num];
   }
 
   return (
     <div className="app">
-      <Colours colour={coloursObject} setColour={(coloursObject) => {setColour(coloursObject)}} />
+      <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
       <button onClick={() => addColourNewToColoursObject()} >new colour</button>
     </div>
   );
