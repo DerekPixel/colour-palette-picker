@@ -41,10 +41,15 @@ function App() {
     return newColour;
   }
 
+  function clipboard() {
+    navigator.clipboard.writeText('BIG TITTY BITCHES');
+  }
+
   return (
     <div className="app">
       <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
       <button onClick={() => addColourNewToColoursArray()} >new colour</button>
+      <button onClick={() => clipboard()} >women</button>
     </div>
   );
 }
