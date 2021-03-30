@@ -5,15 +5,16 @@ import Colours from './components/Colours';
 function App() {
 
 
-  const [coloursArray, setColourArray] = useState([]);
+  const [coloursArray, setColourArray] = useState(() => makeColoursArray());
 
-  function addColourNewToColoursObject() {
+  function makeColoursArray() {
+    return [makeColourObject(0)];
+  }
+
+  function addColourNewToColoursArray() {
     var coloursArrayCopy = coloursArray.slice();
 
-    var newColour = {
-      colour: `#${rH()}${rH()}${rH()}${rH()}${rH()}${rH()}`,
-      pos: coloursArrayCopy.length
-    };
+    var newColour = makeColourObject(coloursArrayCopy.length);
 
     coloursArrayCopy.push(newColour);
 
@@ -21,17 +22,29 @@ function App() {
 
   }
 
-  const rH = () => {
-    //random Hex value
+  function makeColourObject(pos) {
+    var newColour = {
+      colour: randomColourInHex(),
+      pos: pos
+    };
+    return newColour;
+  }
+
+  function randomColourInHex() {
+    var newColour = '#';
     const colourHex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
-    var num = Math.floor(Math.random() * colourHex.length);
-    return colourHex[num];
+    
+    for(var i = 0; i < 6; i++) {
+      var num = Math.floor(Math.random() * colourHex.length);
+      newColour += colourHex[num]
+    }
+    return newColour;
   }
 
   return (
     <div className="app">
       <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
-      <button onClick={() => addColourNewToColoursObject()} >new colour</button>
+      <button onClick={() => addColourNewToColoursArray()} >new colour</button>
     </div>
   );
 }
