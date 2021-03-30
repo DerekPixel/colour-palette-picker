@@ -23,6 +23,29 @@ const Colours = ({colour, setColour: setColourArray}) => {
 
     setColourArray(coloursArrayCopy);
   }
+  
+  function hexToRGB(hex = String) {
+
+    var r, g, b, rgb;
+    r = g = b = '00';
+
+    if(hex.length === 4) {
+      r = '0x' + hex[1] + hex[1];
+      g = '0x' + hex[2] + hex[2];
+      b = '0x' + hex[3] + hex[3];
+    }
+
+    if(hex.length === 7) {
+      r = '0x' + hex[1] + hex[2];
+      g = '0x' + hex[3] + hex[4];
+      b = '0x' + hex[5] + hex[6];
+    }
+
+    rgb = `${parseInt(r, 16)} ${parseInt(g, 16)} ${parseInt(b, 16)}`;
+
+    return rgb;
+
+  }
 
   var colourDiv = colour.map((colourObj, i) => {
     return (
@@ -34,6 +57,8 @@ const Colours = ({colour, setColour: setColourArray}) => {
       {colourObj.pos}
       <input className='colour-column-item' type="color" value={colourObj.colour} onChange={(e) => {handleChangeColour(e, colourObj.pos)}} />
       <button className='colour-column-item' onClick={() => removeColour(colourObj.pos)} >delete</button>
+      <p className='colour-column-item' >HEX {colourObj.colour}</p>
+      <p className='colour-column-item' >RGB {hexToRGB(colourObj.colour)}</p>
     </div>
     )
   })
