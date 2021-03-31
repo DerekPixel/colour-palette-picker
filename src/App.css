@@ -51,14 +51,51 @@ box-sizing: border-box;
 }
 /*#endregion*/
 
-.app  {
+body {
   height: 100vh;
 }
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+}
+
+/* 
+=========================================
+HEADER
+=========================================
+*/
+
+header {
+  align-items: center;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.creds-div {
+  display: flex;
+}
+
+.cred {
+  margin: 0 10px;
+}
+
+/* 
+=========================================
+MAIN
+=========================================
+*/
 
 .colours {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
-  grid-template-rows: 400px;
+  grid-template-rows: 100%;
+  height: 90%;
 }
 
 .colour-column {
@@ -66,9 +103,47 @@ box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
 }
 
 .colour-column-item {
   margin: 10px 0;
+}
+
+.colour-column-item-input {
+  padding: 0;
+  margin: 0;
+}
+
+.btn-delete {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+/* 
+=========================================
+SOMETHING LOL
+=========================================
+*/
+
+.clickable {
+  cursor: pointer;
+}
+
+/* 
+=========================================
+LINKS
+=========================================
+*/
+
+a {
+  color: darkslategray;
+  text-decoration: none;
+}
+
+a:visited {
+  color: darkslategray;
 }
