@@ -11,9 +11,14 @@ const Colours = ({colour, setColour: setColourArray}) => {
   }
 
   function removeColour(pos) {
+    var coloursArrayCopy = colour.slice();
+
+    //escape if there is only one colour left in the colours Array
+    if(coloursArrayCopy.length === 1) {
+      return;
+    }
 
     //Remove colour from array
-    var coloursArrayCopy = colour.slice();
     coloursArrayCopy.splice(pos, 1);
 
     //make sure each colour has correct position property
@@ -41,31 +46,57 @@ const Colours = ({colour, setColour: setColourArray}) => {
       b = '0x' + hex[5] + hex[6];
     }
 
-    rgb = `${parseInt(r, 16)} ${parseInt(g, 16)} ${parseInt(b, 16)}`;
+    rgb = `${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}`;
 
     return rgb;
-
   }
 
-  var colourDiv = colour.map((colourObj, i) => {
+  function clipboard(colour) {
+    navigator.clipboard.writeText(`${colour}`);
+  }
+
+  var coloursDiv = colour.map((colourObj, i) => {
     return (
     <div
       className='colour-column'
       style={{backgroundColor: `${colourObj.colour}`}}
       key={colourObj.pos}
     >
-      {colourObj.pos}
-      <input className='colour-column-item' type="color" value={colourObj.colour} onChange={(e) => {handleChangeColour(e, colourObj.pos)}} />
-      <button className='colour-column-item' onClick={() => removeColour(colourObj.pos)} >delete</button>
-      <p className='colour-column-item' >HEX {colourObj.colour}</p>
-      <p className='colour-column-item' >RGB {hexToRGB(colourObj.colour)}</p>
+
+      <button 
+        className='colour-column-item clickable btn-delete' 
+        onClick={() => removeColour(colourObj.pos)} 
+      >
+        X
+      </button>
+
+      <input 
+        className='colour-column-item clickable colour-column-item-input' 
+        type="color" value={colourObj.colour} 
+        onChange={(e) => {handleChangeColour(e, colourObj.pos)}} 
+      />
+
+      <p 
+        className='colour-column-item clickable' 
+        onClick={() => clipboard(colourObj.colour)} 
+      >
+        {colourObj.colour.toUpperCase()}
+      </p>
+
+      <p 
+        className='colour-column-item clickable' 
+        onClick={() => clipboard(hexToRGB(colourObj.colour))} 
+      >
+        {hexToRGB(colourObj.colour)}
+      </p>
+
     </div>
     )
   })
 
   return (
     <div className='colours'>
-      {colourDiv}
+      {coloursDiv}
     </div>
   )
 }
