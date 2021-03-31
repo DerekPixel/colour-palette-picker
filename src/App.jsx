@@ -11,8 +11,12 @@ function App() {
     return [makeColourObject(0)];
   }
 
-  function addColourNewToColoursArray() {
+  function addNewColourToColoursArray() {
     var coloursArrayCopy = coloursArray.slice();
+
+    if(coloursArrayCopy.length >= 8) {
+      return;
+    }
 
     var newColour = makeColourObject(coloursArrayCopy.length);
 
@@ -41,15 +45,18 @@ function App() {
     return newColour;
   }
 
-  function clipboard() {
-    navigator.clipboard.writeText('BIG TITTY BITCHES');
-  }
-
   return (
     <div className="app">
+      <header>
+        <h1>Colour Palette Picker</h1>
+        <button onClick={() => addNewColourToColoursArray()} >new colour</button>
+
+        <div className="creds-div">
+          <p className="cred">Made by Derek Price</p>
+          <a className="cred" href="https://github.com/DerekPixel/colour-palette-picker">GitHub</a>
+        </div>
+      </header>
       <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
-      <button onClick={() => addColourNewToColoursArray()} >new colour</button>
-      <button onClick={() => clipboard()} >women</button>
     </div>
   );
 }
