@@ -14,7 +14,7 @@ function App() {
   function addNewColourToColoursArray() {
     var coloursArrayCopy = coloursArray.slice();
 
-    if(coloursArrayCopy.length >= 8) {
+    if(coloursArrayCopy.length >= 7) {
       return;
     }
 
@@ -39,8 +39,7 @@ function App() {
     const colourHex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
     
     for(var i = 0; i < 6; i++) {
-      var num = Math.floor(Math.random() * colourHex.length);
-      newColour += colourHex[num]
+      newColour += colourHex[Math.floor(Math.random() * colourHex.length)];
     }
     return newColour;
   }
