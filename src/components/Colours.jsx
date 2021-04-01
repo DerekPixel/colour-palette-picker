@@ -1,4 +1,4 @@
-import React from 'react'
+import ColourValueText from './ColourValueText';
 
 const Colours = ({colour, setColour: setColourArray}) => {
 
@@ -46,16 +46,14 @@ const Colours = ({colour, setColour: setColourArray}) => {
       b = '0x' + hex[5] + hex[6];
     }
 
-    rgb = `${parseInt(r, 16)}, ${parseInt(g, 16)}, ${parseInt(b, 16)}`;
+    rgb = `${parseInt(r, 16)} ${parseInt(g, 16)} ${parseInt(b, 16)}`;
 
     return rgb;
   }
 
-  function clipboard(colour) {
-    navigator.clipboard.writeText(`${colour}`);
-  }
-
   var coloursDiv = colour.map((colourObj, i) => {
+    
+
     return (
     <div
       className='colour-column'
@@ -64,31 +62,48 @@ const Colours = ({colour, setColour: setColourArray}) => {
     >
 
       <button 
-        className='colour-column-item clickable btn-delete' 
+        className='
+          colour-column-item 
+          clickable 
+          btn-delete
+        ' 
         onClick={() => removeColour(colourObj.pos)} 
       >
         X
       </button>
 
       <input 
-        className='colour-column-item clickable colour-column-item-input' 
+        className='
+          colour-column-item
+          clickable 
+          colour-column-item-input
+        ' 
         type="color" value={colourObj.colour} 
         onChange={(e) => {handleChangeColour(e, colourObj.pos)}} 
       />
 
-      <p 
-        className='colour-column-item clickable' 
-        onClick={() => clipboard(colourObj.colour)} 
-      >
-        {colourObj.colour.toUpperCase()}
-      </p>
+      <ColourValueText 
+        className='
+          colour-column-item 
+          clickable 
+          tooltip
+          hex-text
+        ' 
+        colour={colourObj.colour}
+        defaultText='COPY HEX'
+      />
 
-      <p 
-        className='colour-column-item clickable' 
-        onClick={() => clipboard(hexToRGB(colourObj.colour))} 
-      >
-        {hexToRGB(colourObj.colour)}
-      </p>
+      < ColourValueText 
+        className='
+          colour-column-item 
+          clickable 
+          tooltip
+          rgb-text
+        ' 
+
+        colour={hexToRGB(colourObj.colour)}
+        defaultText='COPY RGB'
+      />
 
     </div>
     )
