@@ -101,6 +101,13 @@ MAIN
 .colour-column {
   align-items: center;
   display: flex;
+  /* flex-direction: column; */
+  justify-content: space-evenly;
+}
+
+.colour-column-inner {
+  align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
