@@ -104,6 +104,31 @@ const Colours = ({colour, setColour: setColourArray}) => {
 
   }
 
+  function RGBToHex(rgb = String) {
+
+    var arr = rgb.split(' ');
+
+    var r = parseInt(arr[0], 10),
+        g = parseInt(arr[1], 10),
+        b = parseInt(arr[2], 10);
+
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+  
+    if (r.length === 1) {
+      r = "0" + r;
+    }
+    if (g.length === 1) {
+      g = "0" + g;
+    }
+    if (b.length === 1) {
+      b = "0" + b;
+    }
+  
+    return `#${r}${g}${b}`
+  }
+
   function getLightnessFromHex(colour) {
 
     var hsl = rgbToHSL(hexToRGB(colour));
@@ -121,7 +146,45 @@ const Colours = ({colour, setColour: setColourArray}) => {
     var g = Math.round((parseInt(rgb1[1], 10) + parseInt(rgb2[1], 10)) / 2);
     var b = Math.round((parseInt(rgb1[2], 10) + parseInt(rgb2[2], 10)) / 2);
 
-    console.log(`${r} ${g} ${b}`);
+    return `${r} ${g} ${b}`;
+  }
+
+  function handleAddingNewColourBesideCurrent(thisPos, otherPos) {
+
+    var coloursArrayCopy = colour.slice();
+
+    if(coloursArrayCopy.length >= 7) {
+      return;
+    }
+
+    var colour1, colour2, newAverageColour;
+
+    if(otherPos < 0 || otherPos > coloursArrayCopy.length - 1) {
+      newAverageColour = coloursArrayCopy[thisPos].colour;
+    } else {
+      colour1 = coloursArrayCopy[thisPos].colour;
+      colour2 = coloursArrayCopy[otherPos].colour;
+
+      newAverageColour = RGBToHex(averageColours(colour1, colour2));
+    }
+
+    var newColour = {
+      colour: newAverageColour,
+      pos: 0
+    }
+
+    if(thisPos > otherPos) {
+      coloursArrayCopy.splice(thisPos, 0, newColour);
+    } else {
+      coloursArrayCopy.splice(otherPos, 0, newColour);
+    }
+
+    //make sure each colour has correct position property
+    for(var i = 0; i < coloursArrayCopy.length; i++) {
+      coloursArrayCopy[i].pos = i;
+    }
+
+    setColourArray(coloursArrayCopy);
 
   }
 
@@ -138,49 +201,51 @@ const Colours = ({colour, setColour: setColourArray}) => {
       key={colourObj.pos}
     >
 
-      <button 
-        className='
-          colour-column-item 
-          clickable 
-          btn-delete
-        ' 
-        onClick={() => removeColour(colourObj.pos)} 
-      >
-        X
-      </button>
+      <button onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos - 1)} >+</button>
 
-      <input 
-        className='
-          colour-column-item
-          clickable 
-          colour-column-item-input
-        ' 
-        type="color" value={colourObj.colour} 
-        onChange={(e) => {handleChangeColour(e, colourObj.pos)}} 
-      />
+      <div className='colour-column-inner' >
+        <button
+          className='
+            colour-column-item
+            clickable
+            btn-delete
+          '
+          onClick={() => removeColour(colourObj.pos)}
+        >
+          X
+        </button>
+        <input
+          className='
+            colour-column-item
+            clickable
+            colour-column-item-input
+          '
+          type="color" value={colourObj.colour}
+          onChange={(e) => {handleChangeColour(e, colourObj.pos)}}
+        />
+        <ColourValueText
+          className='
+            colour-column-item
+            clickable
+            tooltip
+            hex-text
+          '
+          colour={colourObj.colour}
+          defaultText='COPY HEX'
+        />
+        < ColourValueText
+          className='
+            colour-column-item
+            clickable
+            tooltip
+            rgb-text
+          '
+          colour={hexToRGB(colourObj.colour)}
+          defaultText='COPY RGB'
+        />
+      </div>
 
-      <ColourValueText 
-        className='
-          colour-column-item 
-          clickable 
-          tooltip
-          hex-text
-        ' 
-        colour={colourObj.colour}
-        defaultText='COPY HEX'
-      />
-
-      < ColourValueText 
-        className='
-          colour-column-item 
-          clickable 
-          tooltip
-          rgb-text
-        ' 
-
-        colour={hexToRGB(colourObj.colour)}
-        defaultText='COPY RGB'
-      />
+      <button onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos + 1)} >+</button>
 
     </div>
     )
@@ -189,7 +254,6 @@ const Colours = ({colour, setColour: setColourArray}) => {
   return (
     <div className='colours'>
       {coloursDiv}
-      <button onClick={() => {averageColours('#e54f17', '#8352AC')}} ></button>
     </div>
   )
 }
