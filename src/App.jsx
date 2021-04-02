@@ -4,26 +4,10 @@ import Colours from './components/Colours';
 
 function App() {
 
-
   const [coloursArray, setColourArray] = useState(() => makeColoursArray());
 
   function makeColoursArray() {
     return [makeColourObject(0)];
-  }
-
-  function addNewColourToColoursArray() {
-    var coloursArrayCopy = coloursArray.slice();
-
-    if(coloursArrayCopy.length >= 7) {
-      return;
-    }
-
-    var newColour = makeColourObject(coloursArrayCopy.length);
-
-    coloursArrayCopy.push(newColour);
-
-    setColourArray(coloursArrayCopy);
-
   }
 
   function makeColourObject(pos) {
@@ -48,7 +32,6 @@ function App() {
     <div className="app">
       <header>
         <h1>Colour Palette Picker</h1>
-        <button onClick={() => addNewColourToColoursArray()} >new colour</button>
 
         <div className="creds-div">
           <p className="cred">Made by Derek Price</p>
