@@ -112,6 +112,19 @@ const Colours = ({colour, setColour: setColourArray}) => {
     return arr[2];
   }
 
+  function averageColours(colour1, colour2) {
+
+    var rgb1 = hexToRGB(colour1).split(' ');
+    var rgb2 = hexToRGB(colour2).split(' ');
+
+    var r = Math.round((parseInt(rgb1[0], 10) + parseInt(rgb2[0], 10)) / 2);
+    var g = Math.round((parseInt(rgb1[1], 10) + parseInt(rgb2[1], 10)) / 2);
+    var b = Math.round((parseInt(rgb1[2], 10) + parseInt(rgb2[2], 10)) / 2);
+
+    console.log(`${r} ${g} ${b}`);
+
+  }
+
   var coloursDiv = colour.map((colourObj, i) => {
     
 
@@ -176,6 +189,7 @@ const Colours = ({colour, setColour: setColourArray}) => {
   return (
     <div className='colours'>
       {coloursDiv}
+      <button onClick={() => {averageColours('#e54f17', '#8352AC')}} ></button>
     </div>
   )
 }
