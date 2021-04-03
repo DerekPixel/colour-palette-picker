@@ -29,7 +29,7 @@ const Colours = ({colour, setColour: setColourArray}) => {
     setColourArray(coloursArrayCopy);
   }
   
-  function hexToRGB(hex = String) {
+  function HexToRGB(hex = String) {
 
     var r, g, b, rgb;
     r = g = b = '00';
@@ -51,7 +51,32 @@ const Colours = ({colour, setColour: setColourArray}) => {
     return rgb;
   }
 
-  function rgbToHSL(rgb = String) {
+  function RGBToHex(rgb = String) {
+
+    var arr = rgb.split(' ');
+
+    var r = parseInt(arr[0], 10),
+        g = parseInt(arr[1], 10),
+        b = parseInt(arr[2], 10);
+
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+  
+    if (r.length === 1) {
+      r = "0" + r;
+    }
+    if (g.length === 1) {
+      g = "0" + g;
+    }
+    if (b.length === 1) {
+      b = "0" + b;
+    }
+  
+    return `#${r}${g}${b}`
+  }
+
+  function RGBToHSL(rgb = String) {
 
     var arr = rgb.split(' ');
     var r = arr[0];
@@ -94,7 +119,7 @@ const Colours = ({colour, setColour: setColourArray}) => {
     l = (cmax + cmin) / 2;
 
     // Calculate saturation
-    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * 1 -1));
+    s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
 
     // Multiply l and s by 100
     s = +(s * 100).toFixed(1);
@@ -104,34 +129,49 @@ const Colours = ({colour, setColour: setColourArray}) => {
 
   }
 
-  function RGBToHex(rgb = String) {
+  function HSLToRGB(hsl = String) {
+    
+    var hslArray = hsl.split(' ');
 
-    var arr = rgb.split(' ');
+    var h = parseInt(hslArray[0], 10),
+        s = parseInt(hslArray[1], 10),
+        l = parseInt(hslArray[2], 10);
 
-    var r = parseInt(arr[0], 10),
-        g = parseInt(arr[1], 10),
-        b = parseInt(arr[2], 10);
+    // Must be fractions of 1
+    s /= 100;
+    l /= 100;
 
-    r = r.toString(16);
-    g = g.toString(16);
-    b = b.toString(16);
+    var c = (1 - Math.abs(2 * l - 1)) * s,
+        x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+        m = l - c / 2,
+        r = 0,
+        g = 0,
+        b = 0;
+
+    if (0 <= h && h < 60) {
+      r = c; g = x; b = 0;  
+    } else if (60 <= h && h < 120) {
+      r = x; g = c; b = 0;
+    } else if (120 <= h && h < 180) {
+      r = 0; g = c; b = x;
+    } else if (180 <= h && h < 240) {
+      r = 0; g = x; b = c;
+    } else if (240 <= h && h < 300) {
+      r = x; g = 0; b = c;
+    } else if (300 <= h && h < 360) {
+      r = c; g = 0; b = x;
+    }
+    r = Math.round((r + m) * 255);
+    g = Math.round((g + m) * 255);
+    b = Math.round((b + m) * 255);
   
-    if (r.length === 1) {
-      r = "0" + r;
-    }
-    if (g.length === 1) {
-      g = "0" + g;
-    }
-    if (b.length === 1) {
-      b = "0" + b;
-    }
-  
-    return `#${r}${g}${b}`
+    return `${r} ${g} ${b}`;
+
   }
 
   function getLightnessFromHex(colour) {
 
-    var hsl = rgbToHSL(hexToRGB(colour));
+    var hsl = RGBToHSL(HexToRGB(colour));
     var arr = hsl.split(' ');
 
     return arr[2];
@@ -139,14 +179,53 @@ const Colours = ({colour, setColour: setColourArray}) => {
 
   function averageColours(colour1, colour2) {
 
-    var rgb1 = hexToRGB(colour1).split(' ');
-    var rgb2 = hexToRGB(colour2).split(' ');
+    var rgb1 = HexToRGB(colour1).split(' ');
+    var rgb2 = HexToRGB(colour2).split(' ');
 
     var r = Math.round((parseInt(rgb1[0], 10) + parseInt(rgb2[0], 10)) / 2);
     var g = Math.round((parseInt(rgb1[1], 10) + parseInt(rgb2[1], 10)) / 2);
     var b = Math.round((parseInt(rgb1[2], 10) + parseInt(rgb2[2], 10)) / 2);
 
     return `${r} ${g} ${b}`;
+  }
+
+  function makeColourLighter(colour1) {
+
+    var hsl = RGBToHSL(HexToRGB(colour1));
+
+    var arr = hsl.split(' ');
+
+    var h = parseInt(arr[0], 10);
+    var s = parseInt(arr[1], 10);
+    var l = parseInt(arr[2], 10);
+
+    if(l >= 95) {
+      l = 100;
+    } else {
+      l += 5;
+    }
+
+    return RGBToHex(HSLToRGB(`${h} ${s} ${l}`));
+
+  }
+
+  function makeColourDarker(colour1) {
+
+    var hsl = RGBToHSL(HexToRGB(colour1));
+
+    var arr = hsl.split(' ');
+
+    var h = parseInt(arr[0], 10);
+    var s = parseInt(arr[1], 10);
+    var l = parseInt(arr[2], 10);
+
+    if(l <= 5) {
+      l = 0;
+    } else {
+      l -= 5;
+    }
+
+    return RGBToHex(HSLToRGB(`${h} ${s} ${l}`));
   }
 
   function handleAddingNewColourBesideCurrent(thisPos, otherPos) {
@@ -160,7 +239,22 @@ const Colours = ({colour, setColour: setColourArray}) => {
     var colour1, colour2, newAverageColour;
 
     if(otherPos < 0 || otherPos > coloursArrayCopy.length - 1) {
-      newAverageColour = coloursArrayCopy[thisPos].colour;
+
+      if(coloursArrayCopy.length === 1) {
+        
+        if(otherPos < 0) {
+          newAverageColour = makeColourDarker(coloursArrayCopy[thisPos].colour);
+        } else if(otherPos > 0) {
+          newAverageColour = makeColourLighter(coloursArrayCopy[thisPos].colour);
+        }
+      } else {
+        if(thisPos === 0) {
+          newAverageColour = makeColourDarker(coloursArrayCopy[thisPos].colour);
+        } else if(thisPos === coloursArrayCopy.length - 1) {
+          newAverageColour = makeColourLighter(coloursArrayCopy[thisPos].colour);
+        }
+      }
+      
     } else {
       colour1 = coloursArrayCopy[thisPos].colour;
       colour2 = coloursArrayCopy[otherPos].colour;
@@ -211,6 +305,7 @@ const Colours = ({colour, setColour: setColourArray}) => {
             btn-delete
           '
           onClick={() => removeColour(colourObj.pos)}
+          style={{color: getLightnessFromHex(colourObj.colour) > 50 ? 'black' : 'white'}}
         >
           X
         </button>
@@ -240,7 +335,7 @@ const Colours = ({colour, setColour: setColourArray}) => {
             tooltip
             rgb-text
           '
-          colour={hexToRGB(colourObj.colour)}
+          colour={HexToRGB(colourObj.colour)}
           defaultText='COPY RGB'
         />
       </div>
