@@ -102,7 +102,7 @@ MAIN
   align-items: center;
   display: flex;
   /* flex-direction: column; */
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .colour-column-inner {
@@ -110,6 +110,7 @@ MAIN
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 90px;
 }
 
 .colour-column-item {
@@ -128,6 +129,57 @@ MAIN
   height: 20px;
   padding: 0;
   width: 20px;
+}
+
+.btn-shades {
+  background-color: transparent;
+  border: none;
+  /* background: url('https://api.iconify.design/heroicons-outline:view-list.svg') no-repeat center center / contain; */
+  font-size: 30px;
+  height: 30px;
+  padding: 0;
+  width: 30px;
+}
+
+.btn-new-colour {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-grow: 1;
+  font-size: 20px;
+  height: 100%;
+  justify-content: center;
+}
+
+.btn-new-colour:hover {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1), transparent);
+  cursor: pointer;
+}
+
+.shades {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.shade {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.shade-text {
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.shade-text:hover {
+  opacity: 1;
 }
 
 /* 
