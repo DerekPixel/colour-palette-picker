@@ -13,7 +13,8 @@ function App() {
   function makeColourObject(pos) {
     var newColour = {
       colour: randomColourInHex(),
-      pos: pos
+      pos: pos,
+      showShades: false
     };
     return newColour;
   }
