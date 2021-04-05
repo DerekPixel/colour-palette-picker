@@ -36,7 +36,11 @@ function App() {
 
         <div className="creds-div">
           <p className="cred">Made by Derek Price</p>
-          <a className="cred" href="https://github.com/DerekPixel/colour-palette-picker">GitHub</a>
+          <a 
+            style={{color: coloursArray[0].colour}}
+            className="cred" 
+            href="https://github.com/DerekPixel/colour-palette-picker"
+          >GitHub</a>
         </div>
       </header>
       <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
