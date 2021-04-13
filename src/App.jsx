@@ -1,10 +1,23 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Colours from './components/Colours';
+import NewPalette from './components/NewPalette';
+import DropDown from './components/DropDown';
 
 function App() {
 
   const [coloursArray, setColourArray] = useState(() => makeColoursArray());
+  const [paletteArray, setPaletteArray] = useState(returnDataObjectIfExistsOrCreateDataObjectIfNot());
+  const [dropDownArray, setDropDownArray] = useState(convertArrayToDropDownCompatible(paletteArray));
+
+  useEffect(() => {
+    // console.log(paletteArray);
+    savePalettesToLocalStorage();
+    setDropDownArray(convertArrayToDropDownCompatible(paletteArray));
+    return () => {
+
+    }
+  }, [paletteArray])
 
   function makeColoursArray() {
     return [makeColourObject(0)];
@@ -29,10 +42,67 @@ function App() {
     return newColour;
   }
 
+  function makeNewlocalStorageObject() {
+    var Data = []
+    return JSON.stringify(Data);
+  };
+
+  function returnDataObjectIfExistsOrCreateDataObjectIfNot() {
+    if(window.localStorage.getItem('user-colour-palettes') === null) {
+      window.localStorage.setItem('user-colour-palettes', makeNewlocalStorageObject());
+    } else {
+      return JSON.parse(window.localStorage.getItem('user-colour-palettes'));
+    }
+    return JSON.parse(window.localStorage.getItem('user-colour-palettes'));
+  };
+
+  function savePalettesToLocalStorage() {
+    var paletteArrayCopy = paletteArray.slice();
+
+    // console.log(paletteArrayCopy);
+
+    window.localStorage.setItem('user-colour-palettes', JSON.stringify(paletteArrayCopy));
+  }
+
+  function convertArrayToDropDownCompatible(array = Array) {
+
+    var arrayCopy = array.slice();
+
+    var newArray = [];
+
+    for(var i = 0; i < arrayCopy.length; i++) {
+      var obj = {
+        title: arrayCopy[i].name,
+        index: i,
+        selected: false,
+        originalObj: arrayCopy[i]
+      };
+
+      newArray.push(obj);
+
+    }
+
+    return newArray;
+
+  }
+
   return (
     <div className="app">
       <header>
         <h1>Colour Palette Picker</h1>
+
+        <NewPalette 
+          colours={coloursArray} 
+          palettes={paletteArray} 
+          setPaletteArray={(array) => {setPaletteArray(array)}} 
+        />
+
+        <DropDown  
+          dropDownMenuArray={dropDownArray}
+          title='Saved Palettes'
+          setDropdownArray={(array) => {setDropDownArray(array)}}
+          setColourArray={(array) => {setColourArray(array)}}
+        />
 
         <div className="creds-div">
           <p className="cred">Made by Derek Price</p>
