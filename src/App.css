@@ -208,7 +208,7 @@ BUTTONS
   font-size: 20px;
   height: 20%;
   justify-content: center;
-  transition: 0.2s all;
+  transition: 0.1s font-size;
   width: 100px;
 }
 
@@ -295,4 +295,47 @@ TOOLTIPS
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+/* 
+=========================================
+DROP DOWN MENUS
+=========================================
+*/
+
+.dropdown {
+  position: relative;
+  z-index: 1;
+  width: 222px;
+}
+
+.dropdown-header {
+  border: 1px black solid;
+  cursor: pointer;
+  padding: 5px;
+  user-select: none;
+}
+
+.dropdown-list {
+  background-color: white;
+  border: 1px black solid;
+  border-top: none;
+  height: 150px;
+  overflow-y:auto;
+  position: absolute;
+  width: inherit;
+}
+
+.dropdown-item {
+  font-weight: bold;
+  padding: 10px 5px;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+  background-color: rgb(255, 196, 0);
+}
+
+.selected {
+  background-color: lightblue;
 }
