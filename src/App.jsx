@@ -11,7 +11,6 @@ function App() {
   const [dropDownArray, setDropDownArray] = useState(convertArrayToDropDownCompatible(paletteArray));
 
   useEffect(() => {
-    // console.log(paletteArray);
     savePalettesToLocalStorage();
     setDropDownArray(convertArrayToDropDownCompatible(paletteArray));
     return () => {
@@ -102,12 +101,13 @@ function App() {
           title='Saved Palettes'
           setDropdownArray={(array) => {setDropDownArray(array)}}
           setColourArray={(array) => {setColourArray(array)}}
+          setPaletteArray={(array) => {setPaletteArray(array)}}
         />
 
         <div className="creds-div">
           <p className="cred">Made by Derek Price</p>
           <a 
-            style={{color: coloursArray[0].colour}}
+            // style={{color: coloursArray[0].colour}}
             className="cred" 
             href="https://github.com/DerekPixel/colour-palette-picker"
           >GitHub</a>
