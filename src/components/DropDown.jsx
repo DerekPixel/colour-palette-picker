@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 
-const DropDown = ({dropDownMenuArray = Array, title = String, setDropdownArray, setColourArray}) => {
+const DropDown = ({dropDownMenuArray = Array, title = String, setDropdownArray, setColourArray, setPaletteArray}) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [headerTitle, setHeaderTitle] = useState(title)
@@ -17,14 +17,34 @@ const DropDown = ({dropDownMenuArray = Array, title = String, setDropdownArray, 
   var dropDown = dropDownMenuArray.map((obj, i, list) => {
     return (
       <div
-        className={obj.selected ? 'dropdown-item selected' : 'dropdown-item'}
+        className='dropdown-item-container'
         key={obj.index}
-        onClick={(e) => {handleItemClick(e, obj.index, list)}}
       >
-        {obj.title}
+        <div
+          className={obj.selected ? 'dropdown-item selected' : 'dropdown-item'}
+          onClick={(e) => {handleItemClick(e, obj.index, list)}}
+        >
+          {obj.title}
+        </div>
+        <button
+        className='dropdown-item-delete-btn'
+          onClick={() => {handleDeleteItem(obj.index, list)}}
+        >X</button>
       </div>
     )
   })
+
+  function handleDeleteItem(index, list) {
+    var listcopy = list.slice();
+    var newPaletteArray = [];
+
+    listcopy.splice(index, 1);
+
+    for(var i = 0; i < listcopy.length; i++) {
+      newPaletteArray.push(listcopy[i].originalObj);
+    }
+    setPaletteArray(newPaletteArray);
+  }
 
   function handleHeaderClick() {
     if(isOpen) {
