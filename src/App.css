@@ -326,9 +326,14 @@ DROP DOWN MENUS
   width: inherit;
 }
 
+.dropdown-item-container {
+  display: flex;
+}
+
 .dropdown-item {
   font-weight: bold;
   padding: 10px 5px;
+  width: 85%;
 }
 
 .dropdown-item:hover {
@@ -336,6 +341,46 @@ DROP DOWN MENUS
   background-color: rgb(255, 196, 0);
 }
 
+.dropdown-item-delete-btn {
+  width: 15%;
+}
+
 .selected {
   background-color: lightblue;
+}
+
+/* 
+=========================================
+NEW PALETTE
+=========================================
+*/
+
+.new-palette-inputs {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 3;
+}
+
+/* .new-palette-input-btn {
+
+} */
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  left: 0;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 2;
 }
