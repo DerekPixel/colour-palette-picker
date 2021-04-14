@@ -41,19 +41,31 @@ const NewPalette = ({colours = Array, palettes = Array, setPaletteArray}) => {
       >Make new Palette</button>
       {
         showInput &&
+        <>
+        <div className='overlay'></div>
         <div
           className='new-palette-inputs'
         >
           <input
+            autoFocus
             onChange={(e) => {setPaletteName(e.target.value)}}
             placeholder='Palette Name'
             type="text"
             value={paletteName}
           />
-          <button
-            onClick={() => {handlePaletteSave()}}
-          >Save</button>
+          <div
+            className='new-palette-input-btn'
+          >
+            <button
+              onClick={() => {handlePaletteSave()}}
+            >Save</button>
+            <button
+              onClick={() => {setShowInput(false)}}
+            >Cancel</button>
+          </div>
         </div>
+        </>
+
       }
 
     </div>
