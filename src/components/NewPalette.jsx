@@ -1,9 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 
 const NewPalette = ({colours = Array, palettes = Array, setPaletteArray}) => {
 
   const [showInput, setShowInput] = useState(false);
   const [paletteName, setPaletteName] = useState('');
+
+  const paletteInput = useRef(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    }
+  }, [])
 
   function handlePaletteSave() {
     if(paletteName === '') {
@@ -32,20 +41,34 @@ const NewPalette = ({colours = Array, palettes = Array, setPaletteArray}) => {
     setPaletteArray(paletteArrayCopy);
   }
 
+  function handleDocumentClick(e) {
+    if(paletteInput.current && !paletteInput.current.contains(e.target)) {
+      setShowInput(true);
+    } else {
+      setShowInput(false)
+    }
+  }
+
   return (
     <div
       className='new-palette'
     >
       <button
         onClick={() => {setShowInput(true)}}
-      >Make new Palette</button>
+      >Save</button>
       {
         showInput &&
         <>
-        <div className='overlay'></div>
+        <div 
+          className='overlay'
+          ref={paletteInput}
+        ></div>
         <div
           className='new-palette-inputs'
         >
+          <h2
+            className='new-palette-title'
+          >Save Palette</h2>
           <input
             autoFocus
             onChange={(e) => {setPaletteName(e.target.value)}}
