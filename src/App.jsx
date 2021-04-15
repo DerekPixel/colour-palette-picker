@@ -90,29 +90,43 @@ function App() {
       <header>
         <h1>Colour Palette Picker</h1>
 
-        <NewPalette 
-          colours={coloursArray} 
-          palettes={paletteArray} 
-          setPaletteArray={(array) => {setPaletteArray(array)}} 
-        />
-
-        <DropDown  
-          dropDownMenuArray={dropDownArray}
-          title='Saved Palettes'
-          setDropdownArray={(array) => {setDropDownArray(array)}}
-          setColourArray={(array) => {setColourArray(array)}}
-          setPaletteArray={(array) => {setPaletteArray(array)}}
-        />
-
-        <div className="creds-div">
-          <p className="cred">Made by Derek Price</p>
-          <a 
-            // style={{color: coloursArray[0].colour}}
-            className="cred" 
-            href="https://github.com/DerekPixel/colour-palette-picker"
-          >GitHub</a>
+        <div className="header-rows">
+          <div
+            className="header-top-row"
+          >
+            <div className="creds-div">
+              <p className="cred">Made by Derek Price</p>
+              <a
+                // style={{color: coloursArray[0].colour}}
+                className="cred"
+                href="https://github.com/DerekPixel/colour-palette-picker"
+              >GitHub</a>
+            </div>
+          </div>
+          <hr/>
+          <div
+            className="header-bottom-row"
+          >
+            <div className="header-bottom-row-item">
+              <NewPalette
+                colours={coloursArray}
+                palettes={paletteArray}
+                setPaletteArray={(array) => {setPaletteArray(array)}}
+              />
+            </div>
+            <div className="header-bottom-row-item">
+              <DropDown
+                dropDownMenuArray={dropDownArray}
+                title='Saved Palettes'
+                setDropdownArray={(array) => {setDropDownArray(array)}}
+                setColourArray={(array) => {setColourArray(array)}}
+                setPaletteArray={(array) => {setPaletteArray(array)}}
+              />
+            </div>
+          </div>
         </div>
       </header>
+
       <Colours colour={coloursArray} setColour={(coloursObject) => {setColourArray(coloursObject)}} />
     </div>
   );
