@@ -98,7 +98,7 @@ function App() {
               <p className="cred">Made by Derek Price</p>
               <a
                 // style={{color: coloursArray[0].colour}}
-                className="cred"
+                className="cred github-link"
                 href="https://github.com/DerekPixel/colour-palette-picker"
               >GitHub</a>
             </div>
