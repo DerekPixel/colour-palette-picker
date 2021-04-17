@@ -1,6 +1,7 @@
 import ColoursInnerColumn from './ColoursInnerColumn.jsx';
 import ColourShades from './ColourShades.jsx';
-import {getLightnessFromHex, handleAddingNewColourBesideCurrent} from '../coloursFunctions.js';
+import ColourValueText from './ColourValueText.jsx';
+import {getLightnessFromHex, handleAddingNewColourBesideCurrent, HexToRGB} from '../coloursFunctions.js';
 
 const Colours = ({colour: colours, setColour: setColourArray}) => {
 
@@ -17,23 +18,49 @@ const Colours = ({colour: colours, setColour: setColourArray}) => {
     >
 
         {
-          !colourObj.showShades ?
+          !colourObj.showShades &&
           <div
             className='btn-new-colour'
             onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos - 1, colours, setColourArray)}
-          >+</div> : ''
+          >+</div>
         }
         {
           colourObj.showShades ?
-          <ColourShades colours={colours} colourObj={colourObj} setColourArray={setColourArray} /> :
-          <ColoursInnerColumn colours={colours} colourObj={colourObj} setColourArray={setColourArray} />
+          <ColourShades colours={colours} colourObj={colourObj} setColourArray={setColourArray} />
+          : 
+          <>
+           <ColoursInnerColumn colours={colours} colourObj={colourObj} setColourArray={setColourArray}/>
+           
+           <div className='colour-column-text'>
+             <ColourValueText
+               className='
+                 colour-column-item
+                 clickable
+                 tooltip
+                 hex-text
+               '
+               colour={colourObj.colour}
+               defaultText='COPY HEX'
+             />
+             < ColourValueText
+               className='
+                 colour-column-item
+                 clickable
+                 tooltip
+                 rgb-text
+               '
+               colour={HexToRGB(colourObj.colour)}
+               defaultText='COPY RGB'
+             />
+           </div>
+         </>
         }
         {
-          !colourObj.showShades ?
+          !colourObj.showShades &&
           <div
             className='btn-new-colour'
             onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos + 1, colours, setColourArray)}
-          >+</div> : ''
+          >+</div>
         }
 
     </div>
