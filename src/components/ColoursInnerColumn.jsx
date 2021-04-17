@@ -1,5 +1,4 @@
-import ColourValueText from './ColourValueText.jsx';
-import {removeColour, getLightnessFromHex, handleChangeColour, HexToRGB, handleShadeChange} from '../coloursFunctions.js';
+import {removeColour, getLightnessFromHex, handleChangeColour, handleShadeChange} from '../coloursFunctions.js';
 
 const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
 
@@ -47,28 +46,6 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
             />
             <span className='tooltiptext' >Change Colour</span>
           </div>
-        </div>
-        <div className='colour-column-inner-text'>
-          <ColourValueText
-            className='
-              colour-column-item
-              clickable
-              tooltip
-              hex-text
-            '
-            colour={colourObj.colour}
-            defaultText='COPY HEX'
-          />
-          < ColourValueText
-            className='
-              colour-column-item
-              clickable
-              tooltip
-              rgb-text
-            '
-            colour={HexToRGB(colourObj.colour)}
-            defaultText='COPY RGB'
-          />
         </div>
       </div>
   )
