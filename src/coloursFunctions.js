@@ -1,46 +1,78 @@
 export function handleChangeColour(e, pos, colours, setColourArray) {
   var coloursArrayCopy = colours.slice();
 
-  coloursArrayCopy[pos].colour = e.target.value;
+  var colourArrayClone = [];
+
+  for(var i = 0; i < coloursArrayCopy.length; i++) {
+    var colourObjClone = {...coloursArrayCopy[i]}
+
+    colourArrayClone.push(colourObjClone);
+  }
+
+  colourArrayClone[pos].colour = e.target.value;
   
-  setColourArray(coloursArrayCopy);
+  setColourArray(colourArrayClone);
 }
 
 export function handleShadeChange(colours, colourObj, setColourArray) {
 
   var coloursArrayCopy = colours.slice();
 
-  coloursArrayCopy[colourObj.pos].showShades = true;
+  var colourArrayClone = [];
 
-  setColourArray(coloursArrayCopy);
+  for(var i = 0; i < coloursArrayCopy.length; i++) {
+    var colourObjClone = {...coloursArrayCopy[i]}
+
+    colourArrayClone.push(colourObjClone);
+  }
+
+  colourArrayClone[colourObj.pos].showShades = true;
+
+  setColourArray(colourArrayClone);
 }
 
 export function handleColourChangeAndShowShades(colours, colourObj, setColourArray, shade) {
   var coloursArrayCopy = colours.slice();
 
-  coloursArrayCopy[colourObj.pos].showShades = false;
-  coloursArrayCopy[colourObj.pos].colour = shade;
+  var colourArrayClone = [];
 
-  setColourArray(coloursArrayCopy);
+  for(var i = 0; i < coloursArrayCopy.length; i++) {
+    var colourObjClone = {...coloursArrayCopy[i]}
+
+    colourArrayClone.push(colourObjClone);
+  }
+
+  colourArrayClone[colourObj.pos].showShades = false;
+  colourArrayClone[colourObj.pos].colour = shade;
+
+  setColourArray(colourArrayClone);
 }
 
 export function removeColour(pos, colours, setColourArray) {
   var coloursArrayCopy = colours.slice();
 
+  var colourArrayClone = [];
+
+  for(var i = 0; i < coloursArrayCopy.length; i++) {
+    var colourObjClone = {...coloursArrayCopy[i]}
+
+    colourArrayClone.push(colourObjClone);
+  }
+
   //escape if there is only one colour left in the colours Array
-  if(coloursArrayCopy.length === 1) {
+  if(colourArrayClone.length === 1) {
     return;
   }
 
   //Remove colour from array
-  coloursArrayCopy.splice(pos, 1);
+  colourArrayClone.splice(pos, 1);
 
   //make sure each colour has correct position property
-  for(var i = 0; i < coloursArrayCopy.length; i++) {
-    coloursArrayCopy[i].pos = i;
+  for(var i = 0; i < colourArrayClone.length; i++) {
+    colourArrayClone[i].pos = i;
   }
 
-  setColourArray(coloursArrayCopy);
+  setColourArray(colourArrayClone);
 }
 
 export function HexToRGB(hex = String) {
@@ -323,6 +355,10 @@ export function fillColourShadesArrayWithDarkShades(colourToMakeDarker, colourAr
 
   fillColourShadesArrayWithDarkShades(darkerShade, colourArray);
 
+}
+
+export function getColourLightnessAndReturnBlackOrWhite(colour) {
+  return getLightnessFromHex(colour) > 40 ? 'black' : 'white'; 
 }
 
 var pimp = () => {
