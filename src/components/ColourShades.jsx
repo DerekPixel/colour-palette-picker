@@ -1,5 +1,5 @@
 import {
-  getLightnessFromHex, 
+  getColourLightnessAndReturnBlackOrWhite, 
   fillColourShadesArrayWithDarkShades, 
   fillColourShadesArrayWithLightShades,
   handleColourChangeAndShowShades
@@ -21,7 +21,7 @@ const ColourShades = ({colours , colourObj, setColourArray}) => {
         key={shade}
         style={{
           backgroundColor: shade,
-          color: getLightnessFromHex(shade) > 50 ? 'black' : 'white'
+          color: getColourLightnessAndReturnBlackOrWhite(shade)
         }}
       >
         <p
