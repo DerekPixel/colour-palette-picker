@@ -1,7 +1,7 @@
 import ColoursInnerColumn from './ColoursInnerColumn.jsx';
 import ColourShades from './ColourShades.jsx';
 import ColourValueText from './ColourValueText.jsx';
-import {getLightnessFromHex, handleAddingNewColourBesideCurrent, HexToRGB} from '../coloursFunctions.js';
+import {getColourLightnessAndReturnBlackOrWhite, handleAddingNewColourBesideCurrent, HexToRGB} from '../coloursFunctions.js';
 
 const Colours = ({colour: colours, setColour: setColourArray}) => {
 
@@ -12,7 +12,7 @@ const Colours = ({colour: colours, setColour: setColourArray}) => {
       className='colour-column'
       style={{
         backgroundColor: `${colourObj.colour}`,
-        color: getLightnessFromHex(colourObj.colour) > 50 ? 'black' : 'white'
+        color: getColourLightnessAndReturnBlackOrWhite(colourObj.colour)
       }}
       key={colourObj.pos}
     >
