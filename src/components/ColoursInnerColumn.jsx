@@ -1,4 +1,4 @@
-import {removeColour, getLightnessFromHex, handleChangeColour, handleShadeChange} from '../coloursFunctions.js';
+import {removeColour, getColourLightnessAndReturnBlackOrWhite, handleChangeColour, handleShadeChange} from '../coloursFunctions.js';
 
 const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
 
@@ -13,7 +13,7 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
               btn-delete
             '
             onClick={() => removeColour(colourObj.pos, colours, setColourArray)}
-            style={{color: getLightnessFromHex(colourObj.colour) > 50 ? 'black' : 'white'}}
+            style={{color: getColourLightnessAndReturnBlackOrWhite(colourObj.colour)}}
           >
             X
             <span className='tooltiptext' >Remove Colour</span>
@@ -26,7 +26,7 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
               btn-shades
             '
             onClick={() => handleShadeChange(colours, colourObj, setColourArray)}
-            style={{color: getLightnessFromHex(colourObj.colour) > 50 ? 'black' : 'white'}}
+            style={{color: getColourLightnessAndReturnBlackOrWhite(colourObj.colour)}}
           >
             <p className="iconify" data-icon="heroicons-outline:view-list" data-inline="false"></p>
             <span className='tooltiptext' >Colour Shades</span>
