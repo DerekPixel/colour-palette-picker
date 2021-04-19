@@ -68,8 +68,8 @@ export function removeColour(pos, colours, setColourArray) {
   colourArrayClone.splice(pos, 1);
 
   //make sure each colour has correct position property
-  for(var i = 0; i < colourArrayClone.length; i++) {
-    colourArrayClone[i].pos = i;
+  for(var j = 0; j < colourArrayClone.length; j++) {
+    colourArrayClone[j].pos = j;
   }
 
   setColourArray(colourArrayClone);
