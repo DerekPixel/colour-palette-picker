@@ -1,4 +1,9 @@
-import {removeColour, getColourLightnessAndReturnBlackOrWhite, handleChangeColour, handleShadeChange} from '../coloursFunctions.js';
+import {
+  removeColour, 
+  getColourLightnessAndReturnBlackOrWhite, 
+  handleChangeColour, 
+  handleShadeChange
+} from '../coloursFunctions.js';
 
 const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
 
@@ -42,7 +47,7 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
             <input
               type="color" 
               value={colourObj.colour}
-              onChange={(e) => {handleChangeColour(e, colourObj.pos, colours,  setColourArray)}}
+              onInput={(e) => handleChangeColour(e, colourObj.pos, colours,  setColourArray)}
             />
             <span className='tooltiptext' >Change Colour</span>
           </div>
