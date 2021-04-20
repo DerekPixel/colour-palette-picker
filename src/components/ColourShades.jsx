@@ -2,7 +2,8 @@ import {
   getColourLightnessAndReturnBlackOrWhite, 
   fillColourShadesArrayWithDarkShades, 
   fillColourShadesArrayWithLightShades,
-  handleColourChangeAndShowShades
+  handleColourChangeAndShowShades,
+  handleShadeChange
 } from '../coloursFunctions.js';
 
 const ColourShades = ({colours , colourObj, setColourArray}) => {
@@ -33,9 +34,11 @@ const ColourShades = ({colours , colourObj, setColourArray}) => {
     )
   })
 
-
   return (
-    <div className='shades'>
+    <div 
+      className='shades'
+      onMouseLeave={() => handleShadeChange(colours, colourObj, setColourArray, false)}
+    >
       {colourShadesDiv}
     </div>
   )

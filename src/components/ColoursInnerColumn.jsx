@@ -30,7 +30,7 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
               tooltip
               btn-shades
             '
-            onClick={() => handleShadeChange(colours, colourObj, setColourArray)}
+            onClick={() => handleShadeChange(colours, colourObj, setColourArray, true)}
             style={{color: getColourLightnessAndReturnBlackOrWhite(colourObj.colour)}}
           >
             <p className="iconify" data-icon="heroicons-outline:view-list" data-inline="false"></p>

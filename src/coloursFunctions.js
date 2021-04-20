@@ -14,7 +14,7 @@ export function handleChangeColour(e, pos, colours, setColourArray) {
   setColourArray(colourArrayClone);
 }
 
-export function handleShadeChange(colours, colourObj, setColourArray) {
+export function handleShadeChange(colours, colourObj, setColourArray, on) {
 
   var coloursArrayCopy = colours.slice();
 
@@ -26,7 +26,7 @@ export function handleShadeChange(colours, colourObj, setColourArray) {
     colourArrayClone.push(colourObjClone);
   }
 
-  colourArrayClone[colourObj.pos].showShades = true;
+  colourArrayClone[colourObj.pos].showShades = on;
 
   setColourArray(colourArrayClone);
 }
