@@ -81,7 +81,7 @@ const Colours = ({colour: colours, setColour: setColourArray}) => {
   function initializeVisibleArray() {
     var newArr = [];
 
-    for(var i = 0; i < colours.length; i++) {
+    for(var i = 0; i < 7; i++) {
       if(getBrowser() === 'Firefox') {
         newArr.push(true);
       } else {
