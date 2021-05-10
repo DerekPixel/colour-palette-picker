@@ -19,7 +19,7 @@ function App() {
   }, [paletteArray])
 
   function makeColoursArray() {
-    return [makeColourObject(0)];
+    return [makeColourObject(0), makeColourObject(1), makeColourObject(2)];
   }
 
   function makeColourObject(pos) {
