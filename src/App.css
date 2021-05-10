@@ -579,4 +579,28 @@ MEDIA QUERYS
     width: unset;
   }
 
+  @media screen and (max-width: 445px) {
+
+    header {
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 30px;
+      white-space: nowrap;
+    }
+
+    .header-top-row {
+      font-size: 14px;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    hr {
+    margin: 5px 0 5px auto;
+    width: 100%;
+    }
+
+  } 
+
 }
