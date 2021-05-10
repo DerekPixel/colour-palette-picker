@@ -2,13 +2,20 @@ import {
   removeColour, 
   getColourLightnessAndReturnBlackOrWhite, 
   handleChangeColour, 
-  handleShadeChange
+  handleShadeChange,
+  handleAddingNewColourBesideCurrent
 } from '../coloursFunctions.js';
 
 const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
 
   return (
       <div className='colour-column-inner' >
+
+        <div
+          className='btn-new-colour'
+          onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos - 1, colours, setColourArray)}
+        >+</div>
+
         <div className='colour-column-inner-btns'>
           <button
             className='
@@ -52,6 +59,12 @@ const ColoursInnerColumn = ({colours, setColourArray, colourObj}) => {
             <span className='tooltiptext' >Change Colour</span>
           </div>
         </div>
+
+        <div
+          className='btn-new-colour'
+          onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos + 1, colours, setColourArray)}
+        >+</div>
+
       </div>
   )
 }
