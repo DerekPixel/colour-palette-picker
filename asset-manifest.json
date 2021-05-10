@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/colour-palette-picker/static/css/main.18b9cf81.chunk.css",
-    "main.js": "/colour-palette-picker/static/js/main.c66f2b3c.chunk.js",
-    "main.js.map": "/colour-palette-picker/static/js/main.c66f2b3c.chunk.js.map",
+    "main.css": "/colour-palette-picker/static/css/main.be322806.chunk.css",
+    "main.js": "/colour-palette-picker/static/js/main.eca735a8.chunk.js",
+    "main.js.map": "/colour-palette-picker/static/js/main.eca735a8.chunk.js.map",
     "runtime-main.js": "/colour-palette-picker/static/js/runtime-main.dd8d0ab9.js",
     "runtime-main.js.map": "/colour-palette-picker/static/js/runtime-main.dd8d0ab9.js.map",
     "static/js/2.a6c6676e.chunk.js": "/colour-palette-picker/static/js/2.a6c6676e.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.0d9eb421.chunk.js": "/colour-palette-picker/static/js/3.0d9eb421.chunk.js",
     "static/js/3.0d9eb421.chunk.js.map": "/colour-palette-picker/static/js/3.0d9eb421.chunk.js.map",
     "index.html": "/colour-palette-picker/index.html",
-    "static/css/main.18b9cf81.chunk.css.map": "/colour-palette-picker/static/css/main.18b9cf81.chunk.css.map",
+    "static/css/main.be322806.chunk.css.map": "/colour-palette-picker/static/css/main.be322806.chunk.css.map",
     "static/js/2.a6c6676e.chunk.js.LICENSE.txt": "/colour-palette-picker/static/js/2.a6c6676e.chunk.js.LICENSE.txt",
     "static/media/App.css": "/colour-palette-picker/static/media/Telex-Regular.03ef8ca7.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.dd8d0ab9.js",
     "static/js/2.a6c6676e.chunk.js",
-    "static/css/main.18b9cf81.chunk.css",
-    "static/js/main.c66f2b3c.chunk.js"
+    "static/css/main.be322806.chunk.css",
+    "static/js/main.eca735a8.chunk.js"
   ]
 }
