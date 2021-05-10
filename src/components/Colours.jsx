@@ -24,13 +24,13 @@ const Colours = ({colour: colours, setColour: setColourArray}) => {
       {
         visible[colourObj.pos] &&
         <>
-          {
+          {/* {
             !colourObj.showShades &&
             <div
               className='btn-new-colour'
               onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos - 1, colours, setColourArray)}
             >+</div>
-          }
+          } */}
           {
             colourObj.showShades ?
             <ColourShades colours={colours} colourObj={colourObj} setColourArray={setColourArray} />
@@ -39,13 +39,13 @@ const Colours = ({colour: colours, setColour: setColourArray}) => {
               <ColoursInnerColumn colours={colours} colourObj={colourObj} setColourArray={setColourArray}/>
             </>
           }
-          {
+          {/* {
             !colourObj.showShades &&
             <div
               className='btn-new-colour'
               onClick={() => handleAddingNewColourBesideCurrent(colourObj.pos, colourObj.pos + 1, colours, setColourArray)}
             >+</div>
-          }
+          } */}
         </>
       }
 
