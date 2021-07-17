@@ -397,7 +397,7 @@ DROP DOWN MENUS
   border: 2px rgb(25, 102, 255) solid;
   border-radius: 0 0 5px 5px;
   border-top: none;
-  height: 150px;
+  max-height: 150px;
   overflow-y:auto;
   position: absolute;
   width: inherit;
@@ -413,6 +413,13 @@ DROP DOWN MENUS
   padding: 10px 5px;
   width: 100%;
   white-space: nowrap;
+}
+
+.no-palettes {
+  padding: 10px 5px;
+  width: 100%;
+  white-space: nowrap;
+
 }
 
 .dropdown-item:hover {
