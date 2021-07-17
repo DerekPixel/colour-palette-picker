@@ -92,11 +92,17 @@ const DropDown = ({dropDownMenuArray = Array, title = String, setDropdownArray, 
 
       {
         isOpen &&
-      <div 
-        className='dropdown-list'
-      >
-        {dropDown}
-      </div>
+        <div 
+          className='dropdown-list'
+        >
+          {
+            dropDown.length === 0 ?
+            <div
+              className='no-palettes'
+            >No saved Palettes</div> :
+            dropDown
+          }
+        </div>
       }
     </div>
   )
