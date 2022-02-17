@@ -13,9 +13,7 @@ function App() {
   useEffect(() => {
     savePalettesToLocalStorage();
     setDropDownArray(convertArrayToDropDownCompatible(paletteArray));
-    return () => {
-
-    }
+    // eslint-disable-next-line
   }, [paletteArray])
 
   function makeColoursArray() {
