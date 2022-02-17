@@ -1,23 +1,19 @@
 {
   "files": {
-    "main.css": "/colour-palette-picker/static/css/main.74c1f5ed.chunk.css",
-    "main.js": "/colour-palette-picker/static/js/main.0c7d6e31.chunk.js",
-    "main.js.map": "/colour-palette-picker/static/js/main.0c7d6e31.chunk.js.map",
-    "runtime-main.js": "/colour-palette-picker/static/js/runtime-main.dd8d0ab9.js",
-    "runtime-main.js.map": "/colour-palette-picker/static/js/runtime-main.dd8d0ab9.js.map",
-    "static/js/2.a6c6676e.chunk.js": "/colour-palette-picker/static/js/2.a6c6676e.chunk.js",
-    "static/js/2.a6c6676e.chunk.js.map": "/colour-palette-picker/static/js/2.a6c6676e.chunk.js.map",
-    "static/js/3.0d9eb421.chunk.js": "/colour-palette-picker/static/js/3.0d9eb421.chunk.js",
-    "static/js/3.0d9eb421.chunk.js.map": "/colour-palette-picker/static/js/3.0d9eb421.chunk.js.map",
+    "main.css": "/colour-palette-picker/static/css/main.1c19fd01.css",
+    "main.js": "/colour-palette-picker/static/js/main.409edba3.js",
+    "static/js/787.6f485473.chunk.js": "/colour-palette-picker/static/js/787.6f485473.chunk.js",
+    "static/media/Mulish-VariableFont_wght.ttf": "/colour-palette-picker/static/media/Mulish-VariableFont_wght.894f3c22a68a382bf451.ttf",
+    "static/media/Arvo-Regular.ttf": "/colour-palette-picker/static/media/Arvo-Regular.e3d3d53c44db025c4592.ttf",
+    "static/media/Arvo-Bold.ttf": "/colour-palette-picker/static/media/Arvo-Bold.7d67f4cedc80f3f5d262.ttf",
+    "static/media/Telex-Regular.ttf": "/colour-palette-picker/static/media/Telex-Regular.03ef8ca70073daf85011.ttf",
     "index.html": "/colour-palette-picker/index.html",
-    "static/css/main.74c1f5ed.chunk.css.map": "/colour-palette-picker/static/css/main.74c1f5ed.chunk.css.map",
-    "static/js/2.a6c6676e.chunk.js.LICENSE.txt": "/colour-palette-picker/static/js/2.a6c6676e.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/colour-palette-picker/static/media/Telex-Regular.03ef8ca7.ttf"
+    "main.1c19fd01.css.map": "/colour-palette-picker/static/css/main.1c19fd01.css.map",
+    "main.409edba3.js.map": "/colour-palette-picker/static/js/main.409edba3.js.map",
+    "787.6f485473.chunk.js.map": "/colour-palette-picker/static/js/787.6f485473.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.dd8d0ab9.js",
-    "static/js/2.a6c6676e.chunk.js",
-    "static/css/main.74c1f5ed.chunk.css",
-    "static/js/main.0c7d6e31.chunk.js"
+    "static/css/main.1c19fd01.css",
+    "static/js/main.409edba3.js"
   ]
 }
