@@ -2,7 +2,7 @@ import {useState} from 'react';
 import ColoursInnerColumn from './ColoursInnerColumn.jsx';
 import ColourShades from './ColourShades.jsx';
 import ColourValueText from './ColourValueText.jsx';
-import {getColourLightnessAndReturnBlackOrWhite, handleAddingNewColourBesideCurrent, HexToRGB} from '../coloursFunctions.js';
+import {getColourLightnessAndReturnBlackOrWhite, HexToRGB} from '../coloursFunctions.js';
 
 const Colours = ({colour: colours, setColour: setColourArray}) => {
 
